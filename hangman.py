@@ -25,3 +25,15 @@ def create_status(secret_word, guesses, remaining_turns):
     Guesses: {guesses}
     Remaining turns : {remaining_turns}
     """
+
+def play(secret_word, guesses, guess, remaining_turns):
+    if "-" not in mask_word(secret_word, guesses+[guess]):
+        return remaining_turns, False, True
+    if guess in guesses:
+        return remaining_turns, True, False
+    if guess in secret_word:
+        guesses.append(guess)
+        return remaining_turns, False, False
+    if guess not in secret_word:
+        guesses.append(guess)
+        return remaining_turns-1, False, False
