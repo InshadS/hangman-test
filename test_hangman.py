@@ -34,3 +34,21 @@ def test_get_word_min_length():
         word = hangman.get_word("/tmp/words.txt")
         assert word == "elephant"
     os.unlink("/tmp/words.txt")
+
+def test_mask_word_single_letter():
+    secret_word = "elephant"
+    guesses= ["l"]
+    ret =hangman.mask_word(secret_word,guesses)
+    assert ret == "-l------"
+
+def test_mask_word_mulitple_letter():
+    secret_word = "elephant"
+    guesses= ["e"]
+    ret =hangman.mask_word(secret_word,guesses)
+    assert ret == "e-e-----"
+    
+def test_mask_word_mix_letter():
+    secret_word = "elephant"
+    guesses= ["e","l","y"]
+    ret =hangman.mask_word(secret_word,guesses)
+    assert ret == "ele-----"
