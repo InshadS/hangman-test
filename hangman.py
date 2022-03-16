@@ -17,3 +17,11 @@ def mask_word(secret_word,guesses):
         else:
             op.append("-")
     return "".join(op)
+
+def create_status(secret_word, guesses, remaining_turns):
+    masked_word = mask_word(secret_word, guesses)
+    guesses = " ".join(guesses)
+    return f"""Word: {masked_word}
+    Guesses: {guesses}
+    Remaining turns : {remaining_turns}
+    """
