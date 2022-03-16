@@ -37,3 +37,27 @@ def play(secret_word, guesses, guess, remaining_turns):
     if guess not in secret_word:
         guesses.append(guess)
         return remaining_turns-1, False, False
+
+def main():
+    secret_word = get_word()
+    print(secret_word)
+    remaining_turns = 8
+    guesses = []
+    while True:
+        status = create_status(secret_word, guesses, remaining_turns)
+        print(status)
+        guess = input("Enter a letter ").strip()
+        remaining_turns, repeat, finished = play(
+            secret_word, guesses, guess, remaining_turns)
+        if finished:
+            print(f"You found the secret word '{secret_word}'")
+            break
+        if remaining_turns == 0:
+            print(f"You failed. The secret word was {secret_word}")
+            break
+        elif repeat:
+            print(f"You already guessed '{guess}'")
+
+
+if __name__ == "__main__":
+    main()
